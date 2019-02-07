@@ -426,7 +426,7 @@ int main(int argc, char** argv) {
 	if (argc > 1)
 		fileName = argv[1];
 	else
-		fileName = "test.ascl";
+		cin >> fileName;
 	if (fileName != "") {
 		inter.open(fileName);
 		inter.loop();
