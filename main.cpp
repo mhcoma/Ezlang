@@ -149,6 +149,7 @@ bool Interpreter::interprete(char code) {
 		case 'X':
 		case 'Y':
 		case 'Z': {
+			if (storage[strgIndex].size() <= 0) break;
 			storage[code - 65].push_front(storage[strgIndex].front());
 			storage[strgIndex].pop_front();
 			break;
@@ -173,6 +174,7 @@ bool Interpreter::interprete(char code) {
 			break;
 		}
 		case ';': {
+			if (storage[strgIndex].size() <= 1) break;
 			Value b = storage[strgIndex].front();
 			storage[strgIndex].pop_front();
 			Value a = storage[strgIndex].front();
@@ -182,18 +184,21 @@ bool Interpreter::interprete(char code) {
 			break;
 		}
 		case '.': {
+			if (storage[strgIndex].size() <= 0) break;
 			Value a = storage[strgIndex].back();
-			storage[strgIndex].pop_back();
 			storage[strgIndex].push_front(a);
+			storage[strgIndex].pop_back();
 			break;
 		}
 		case ',': {
+			if (storage[strgIndex].size() <= 0) break;
 			Value a = storage[strgIndex].front();
 			storage[strgIndex].pop_front();
 			storage[strgIndex].push_back(a);
 			break;
 		}
 		case '+': {
+			if (storage[strgIndex].size() <= 1) break;
 			Value b = storage[strgIndex].front();
 			storage[strgIndex].pop_front();
 			Value a = storage[strgIndex].front();
@@ -206,6 +211,7 @@ bool Interpreter::interprete(char code) {
 			break;
 		}
 		case '-': {
+			if (storage[strgIndex].size() <= 1) break;
 			Value b = storage[strgIndex].front();
 			storage[strgIndex].pop_front();
 			Value a = storage[strgIndex].front();
@@ -218,6 +224,7 @@ bool Interpreter::interprete(char code) {
 			break;
 		}
 		case '*': {
+			if (storage[strgIndex].size() <= 1) break;
 			Value b = storage[strgIndex].front();
 			storage[strgIndex].pop_front();
 			Value a = storage[strgIndex].front();
@@ -230,6 +237,7 @@ bool Interpreter::interprete(char code) {
 			break;
 		}
 		case '/': {
+			if (storage[strgIndex].size() <= 1) break;
 			Value b = storage[strgIndex].front();
 			storage[strgIndex].pop_front();
 			Value a = storage[strgIndex].front();
@@ -239,6 +247,7 @@ bool Interpreter::interprete(char code) {
 			break;
 		}
 		case '%': {
+			if (storage[strgIndex].size() <= 1) break;
 			Value b = storage[strgIndex].front();
 			storage[strgIndex].pop_front();
 			Value a = storage[strgIndex].front();
@@ -251,6 +260,7 @@ bool Interpreter::interprete(char code) {
 			break;
 		}
 		case '=': {
+			if (storage[strgIndex].size() <= 1) break;
 			Value b = storage[strgIndex].front();
 			storage[strgIndex].pop_front();
 			Value a = storage[strgIndex].front();
@@ -263,6 +273,7 @@ bool Interpreter::interprete(char code) {
 			break;
 		}
 		case '>': {
+			if (storage[strgIndex].size() <= 1) break;
 			Value b = storage[strgIndex].front();
 			storage[strgIndex].pop_front();
 			Value a = storage[strgIndex].front();
@@ -275,6 +286,7 @@ bool Interpreter::interprete(char code) {
 			break;
 		}
 		case '<': {
+			if (storage[strgIndex].size() <= 1) break;
 			Value b = storage[strgIndex].front();
 			storage[strgIndex].pop_front();
 			Value a = storage[strgIndex].front();
@@ -287,6 +299,7 @@ bool Interpreter::interprete(char code) {
 			break;
 		}
 		case '&': {
+			if (storage[strgIndex].size() <= 1) break;
 			Value b = storage[strgIndex].front();
 			storage[strgIndex].pop_front();
 			Value a = storage[strgIndex].front();
@@ -296,6 +309,7 @@ bool Interpreter::interprete(char code) {
 			break;
 		}
 		case '|': {
+			if (storage[strgIndex].size() <= 1) break;
 			Value b = storage[strgIndex].front();
 			storage[strgIndex].pop_front();
 			Value a = storage[strgIndex].front();
@@ -305,6 +319,7 @@ bool Interpreter::interprete(char code) {
 			break;
 		}
 		case '~': {
+			if (storage[strgIndex].size() <= 0) break;
 			Value a = storage[strgIndex].front();
 			storage[strgIndex].pop_front();
 			a.set(!a.getInt());
@@ -312,24 +327,28 @@ bool Interpreter::interprete(char code) {
 			break;
 		}
 		case '#': {
+			if (storage[strgIndex].size() <= 0) break;
 			Value a = storage[strgIndex].front();
 			storage[strgIndex].pop_front();
 			cout << a.getInt();
 			break;
 		}
 		case '^': {
+			if (storage[strgIndex].size() <= 0) break;
 			Value a = storage[strgIndex].front();
 			storage[strgIndex].pop_front();
 			cout << a.getFloat();
 			break;
 		}
 		case '@': {
+			if (storage[strgIndex].size() <= 0) break;
 			Value a = storage[strgIndex].front();
 			storage[strgIndex].pop_front();
 			cout << char(a.getInt());
 			break;
 		}
 		case ' ': {
+			if (storage[strgIndex].size() <= 0) break;
 			storage[strgIndex].pop_front();
 			break;
 		}
