@@ -93,81 +93,19 @@ bool Interpreter::interprete(char code) {
 				loopLevel++;
 		return true;
 	}
-	switch (code) {
-		case 'a':
-		case 'b':
-		case 'c':
-		case 'd':
-		case 'e':
-		case 'f':
-		case 'g':
-		case 'h':
-		case 'i':
-		case 'j':
-		case 'k':
-		case 'l':
-		case 'm':
-		case 'n':
-		case 'o':
-		case 'p':
-		case 'q':
-		case 'r':
-		case 's':
-		case 't':
-		case 'u':
-		case 'v':
-		case 'w':
-		case 'x':
-		case 'y':
-		case 'z': {
-			strgIndex = code - 97;
-			break;
-		}
-		case 'A':
-		case 'B':
-		case 'C':
-		case 'D':
-		case 'E':
-		case 'F':
-		case 'G':
-		case 'H':
-		case 'I':
-		case 'J':
-		case 'K':
-		case 'L':
-		case 'M':
-		case 'N':
-		case 'O':
-		case 'P':
-		case 'Q':
-		case 'R':
-		case 'S':
-		case 'T':
-		case 'U':
-		case 'V':
-		case 'W':
-		case 'X':
-		case 'Y':
-		case 'Z': {
-			if (storage[strgIndex].size() <= 0) break;
+	if (code >= 'a' && code <= 'z')
+		strgIndex = code - 97;
+	if (code >= 'A' && code <= 'Z') {
+		if (storage[strgIndex].size() > 0) {
 			storage[code - 65].push_front(storage[strgIndex].front());
 			storage[strgIndex].pop_front();
-			break;
 		}
-		case '0':
-		case '1':
-		case '2':
-		case '3':
-		case '4':
-		case '5':
-		case '6':
-		case '7':
-		case '8':
-		case '9': {
-			Value a(code - 48);
-			storage[strgIndex].push_front(a);
-			break;
-		}
+	}
+	if (code >= '0' && code <= '9') {
+		Value a(code - 48);
+		storage[strgIndex].push_front(a);
+	}
+	switch (code) {
 		case ':': {
 			Value a = storage[strgIndex].front();
 			storage[strgIndex].push_front(a);
